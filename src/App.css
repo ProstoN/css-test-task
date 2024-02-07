@@ -1,38 +1,117 @@
-.App {
-  text-align: center;
+.card-container {
+  min-height: 200vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.top-banner {
+  background-color: black;
+  height: 50vh;
+  width: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  width: 50%;
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.banner {
+  container-type: inline-size;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  transition: bottom 0.5s ease;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-family: 'Arial', sans-serif;
+  width: 650px;
+  height: 350px;
+  background-image: url('../public/bot-banner.png');
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+  contain: size layout style;
 }
 
-.App-link {
-  color: #61dafb;
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 55px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.content {
+  max-width: 300px;
+  text-align: right;
+  margin-right: 3em;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+  margin-right: 1em;
+  color: yellow
+}
+
+.discount {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-right: 2.3em;
+}
+
+.code {
+  font-size: 1em;
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.shop-btn {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9em;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.shop-btn:hover {
+  background-color: #e0a800;
+}
+
+@media (max-width: 400px) {
+  .banner {
+    width: 100%;
+    right: 0;
+    bottom: 20px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@container (max-width: 400px) {
+  .content {
+    margin-right: -0.5em;
+  }
+  .title, .discount, .code, .shop-btn {
+    margin-right: 0;
+  }
+
+  .close-btn {
+    top: 30px;
+    right: 20px;
   }
 }
