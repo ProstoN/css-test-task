@@ -9,6 +9,7 @@ const App: React.FC = () => {
     }
     const initialBannerState = localStorage.getItem('bannerClosed') !== 'true';
     const [showBottomBanner, setShowBottomBanner] = useState(initialBannerState);
+    const [showTopBanner, setShowTopBanner] = useState(initialBannerState);
     const [isVisible, setIsVisible] = useState(false);
     const [shopText, setShopText] = useState("Shop now through Monday")
 
@@ -20,8 +21,6 @@ const App: React.FC = () => {
 
         if (scrollY - 100 >= (documentHeight / 2) - windowHeight) {
             setIsVisible(true);
-        } else {
-            setIsVisible(false);
         }
     };
 
@@ -47,11 +46,13 @@ const App: React.FC = () => {
 
     const closeBottomBanner = () => {
         setShowBottomBanner(false);
+        setShowTopBanner(false);
         localStorage.setItem('bannerClosed', 'true');
     };
 
     return (
         <div className="card-container">
+            {showTopBanner && (
             <div className="top-banner">
                 <div className="top-banner-content">
                     <span className="gap">
@@ -68,7 +69,7 @@ const App: React.FC = () => {
                 <button className="top-banner-shop-btn" onClick={() => alert("You can shop now!")}>Shop now</button>
                 <button className="top-banner-close tablet-mode" onClick={closeBottomBanner}>×</button>
                 <Arrow className="top-banner-arrow" onClick={() => alert("You can shop now!")}/>
-            </div>
+            </div>)}
             {isVisible && showBottomBanner && (
                 <div className="banner" style={{bottom: isVisible ? '20px' : '-100%'}}>
                     <div className="container">
