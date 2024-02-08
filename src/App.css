@@ -2,26 +2,14 @@
   min-height: 200vh;
 }
 
-.top-banner {
-  background-color: black;
-  height: 50vh;
-  width: 100vh;
-}
-
-.container {
-  width: 50%;
-  height: 100%;
-}
-
 .banner {
   container-type: inline-size;
   position: fixed;
   right: 20px;
-  bottom: 20px;
   transition: bottom 0.5s ease;
   display: flex;
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Georgia', sans-serif;
   width: 650px;
   height: 350px;
   background-image: url('../public/bot-banner.png');
@@ -32,10 +20,9 @@
   align-items: flex-end;
   padding: 20px;
   box-sizing: border-box;
-  contain: size layout style;
 }
 
-.close-btn {
+.bottom-banner-close-btn {
   position: absolute;
   top: 15px;
   right: 55px;
@@ -45,53 +32,135 @@
   font-size: 24px;
   cursor: pointer;
   padding: 0;
-  line-height: 1;
 }
 
-.content {
+.bottom-banner-content {
   max-width: 300px;
   text-align: right;
   margin-right: 3em;
 }
 
-.title {
-  font-size: 2em;
-  margin-bottom: 0.3em;
-  margin-right: 1em;
-  color: yellow
+.bottom-banner-title {
+  font-size: 2.7em;
+  margin-bottom: -0.5em;
 }
 
-.discount {
+.bottom-banner-discount {
   font-size: 1.8em;
   font-weight: bold;
   margin-bottom: 0.5em;
-  margin-right: 2.3em;
+  margin-right: 2em;
+  color: #D7A830;
 }
 
-.code {
+.top-banner-code {
   font-size: 1em;
   margin-bottom: 1em;
-  margin-right: 1em;
 }
 
-.shop-btn {
-  background-color: #ffc107;
-  color: black;
+.bottom-banner-shop-btn {
+  width: 15em;
+  font-size: 1em;
+  background-color: rgb(255, 255, 255, 10%);
+  color: white;
   border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  text-transform: uppercase;
+  padding: 1em 1em;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 0.9em;
+  border-radius: 1em;
   outline: none;
   text-decoration: none;
   display: inline-block;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-.shop-btn:hover {
+.bottom-banner-shop-btn:hover {
   background-color: #e0a800;
+  color: black;
+}
+
+.top-banner {
+  container-type: inline-size;
+  background-image: url('../public/top-banner.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  height: 50px;
+  top: 50px;
+  color: #ffffff;
+}
+
+.top-banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+}
+
+.discount {
+  color: #D7A830;
+  font-weight: bold;
+}
+.gap {
+  margin: 0 10px;
+  position: relative;
+  top: -0.1em;
+}
+
+.top-banner-content span:not(:last-child)::after {
+  content: '•';
+  color: #555555;
+  margin: 0 5px;
+  font-size: 12px;
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -20px;
+}
+
+.top-banner-shop-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  right: 60px;
+  top: 7px;
+  border-radius: 20px;
+}
+
+.top-banner-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: block;
+}
+
+.mobile-mode-comma {
+  display: none;
+  font-weight: bold;
+}
+
+.top-banner-shop-btn:hover {
+  background-color: #e0a800;
+  color: black;
+}
+
+.top-banner-arrow {
+  display: none;
 }
 
 @media (max-width: 400px) {
@@ -100,17 +169,51 @@
     right: 0;
     bottom: 20px;
   }
+  .top-banner {
+    background: black;
+  }
+
+  .top-banner-arrow {
+    display: inline;
+    margin-right: 35px;
+  }
 }
 
+@container (max-width: 850px) {
+  .tablet-mode {
+    display: none;
+  }
+
+  .top-banner-shop-btn {
+    right: 1.5em
+  }
+}
+@container (max-width: 600px) {
+  .top-banner-shop-btn {
+    display: none;
+  }
+}
 @container (max-width: 400px) {
-  .content {
+  .bottom-banner-content {
     margin-right: -0.5em;
   }
-  .title, .discount, .code, .shop-btn {
+  .bottom-banner-title, .discount, .top-banner-code, .bottom-banner-shop-btn {
     margin-right: 0;
   }
 
-  .close-btn {
+  .top-banner-code, .top-banner-content span:not(:last-child)::after  {
+    display: none;
+  }
+
+  .gap {
+    margin: 0 2px;
+  }
+
+  .mobile-mode-comma {
+    display: inline;
+  }
+
+  .bottom-banner-close-btn {
     top: 30px;
     right: 20px;
   }

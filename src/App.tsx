@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import { ReactComponent as Arrow } from "./union.svg";
 
 const App: React.FC = () => {
 
@@ -17,8 +18,7 @@ const App: React.FC = () => {
         const scrollY = window.scrollY;
         const documentHeight = document.documentElement.scrollHeight;
 
-        // Активировать, когда пользователь прокрутил до середины страницы
-        if (scrollY > (documentHeight / 2) - windowHeight) {
+        if (scrollY - 100 >= (documentHeight / 2) - windowHeight) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         window.addEventListener('scroll', checkVisibility);
         const updateText = () => {
             const containerWidth = document.documentElement.clientWidth;
-            if (containerWidth < 400) {
+            if (containerWidth <= 400) {
                 setShopText('Shop now!');
             } else {
                 setShopText('Shop now through Monday');
@@ -52,24 +52,36 @@ const App: React.FC = () => {
 
     return (
         <div className="card-container">
-            <div id="top-banner"></div>
-                <div className="banner"
-                     style={{
-                         bottom: isVisible ? '20px' : '-100%',
-                     }}
-                >
-                    {isVisible && (
-                        <div className="container">
-                            <button className="close-btn" onClick={closeBottomBanner}>×</button>
-                            <div className="content">
-                                <p className="title">Black Friday</p>
-                                <p className="discount">10% OFF</p>
-                                <p className="code">Use code 10FRIDAY at checkout</p>
-                                <button className="shop-btn">{shopText}</button>
-                            </div>
-                        </div>
-                    )}
+            <div className="top-banner">
+                <div className="top-banner-content">
+                    <span className="gap">
+                        <strong>Black Friday</strong>
+                        <span className="mobile-mode-comma">,</span>
+                        <span className="tablet-mode">, 24-27 Nov</span>
+                    </span>
+                    <span className="discount gap">10% OFF</span>
+                    <span className="top-banner-code gap">
+                        Use code <strong className="discount">10FRIDAY</strong>
+                        <span className="tablet-mode"> at checkout</span>
+                    </span>
                 </div>
+                <button className="top-banner-shop-btn" onClick={() => alert("You can shop now!")}>Shop now</button>
+                <button className="top-banner-close tablet-mode" onClick={closeBottomBanner}>×</button>
+                <Arrow className="top-banner-arrow" onClick={() => alert("You can shop now!")}/>
+            </div>
+            {isVisible && showBottomBanner && (
+                <div className="banner" style={{bottom: isVisible ? '20px' : '-100%'}}>
+                    <div className="container">
+                        <button className="bottom-banner-close-btn" onClick={closeBottomBanner}>×</button>
+                        <div className="bottom-banner-content">
+                            <p className="bottom-banner-title">Black Friday</p>
+                            <p className="bottom-banner-discount">10% OFF</p>
+                            <p>Use code <strong className="discount">10FRIDAY</strong> at checkout</p>
+                            <button className="bottom-banner-shop-btn" onClick={() => alert("You can shop now!")}>{shopText}</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
 
     );
